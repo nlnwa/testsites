@@ -1,6 +1,8 @@
 #!/bin/bash
 sites=$NUMBER_OF_SITES
-#sites=5000
+domain_depth=$DOMAIN_DEPTH
+#sites=500
+#domain_depth=$8
 i=1
 start_time=$(date +%s%3N)
 while [[ $i -le $sites ]]; do
@@ -12,17 +14,26 @@ while [[ $i -le $sites ]]; do
 </head>
 <h1>HELLO WORLD!</h1>
 <script>
-function getInt(min, max) {
-        return Math.floor(Math.random() * (max - min) ) + min;
-} function makeid() {
-        var text = 'foo';
+function makeid() {
+        var text = window.location.pathname;
+	if (text.length <2) {
+		randoms='foo'
+	} else {
+	var randoms=''
+	}
         var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        for( var i=0; i < 8; i++ )text += possible.charAt(Math.floor(Math.random() * possible.length));
-        return text;
-} var link = document.createElement('a');
-link.setAttribute('href', makeid());
-link.innerHTML = 'Hello World!';
-document.body.appendChild(link);
+        for( var i=0; i < 1; i++ )randoms += possible.charAt(Math.floor(Math.random() * possible.length));
+        return text+randoms;
+} 
+	getlink=makeid();
+	if (getlink.length-5 < $domain_depth) {
+	var link = document.createElement('a');
+	link.setAttribute('href', getlink);
+	link.innerHTML = 'Hello World!';
+	document.body.appendChild(link);
+} else {
+}
+
 </script>
 </body>
 </html>

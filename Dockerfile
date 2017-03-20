@@ -18,7 +18,8 @@ ADD create_sites.sh /var/www/html/test/
 ADD run-httpd.sh /run-httpd.sh
 RUN chmod -v +x /run-httpd.sh && \
     chmod +x /var/www/html/test/create_sites.sh
-ENV NUMBER_OF_SITES='200000'
+ENV NUMBER_OF_SITES='2500'
+ENV DOMAIN_DEPTH='5'
 
 RUN ["/var/www/html/test/create_sites.sh"]
 CMD ["/run-httpd.sh"]
