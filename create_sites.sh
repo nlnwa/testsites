@@ -7,6 +7,7 @@ i=1
 start_time=$(date +%s%3N)
 while [[ $i -le $sites ]]; do
   mkdir /var/www/html/test/$i.dev
+#creating index.html
   echo "<!DOCTYPE html>
 <html lang='en'>
 <head>
@@ -14,26 +15,32 @@ while [[ $i -le $sites ]]; do
 </head>
 <h1>HELLO WORLD!</h1>
 <script>
+//Function for creating 'random' pages.
 function makeid() {
-        var text = window.location.pathname;
-	if (text.length <2) {
-		randoms='foo'
-	} else {
-	var randoms=''
-	}
-        var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        for( var i=0; i < 1; i++ )randoms += possible.charAt(Math.floor(Math.random() * possible.length));
-        return text+randoms;
-} 
-	getlink=makeid();
-	if (getlink.length-5 < $domain_depth) {
-	var link = document.createElement('a');
-	link.setAttribute('href', getlink);
-	link.innerHTML = 'Hello World!';
-	document.body.appendChild(link);
+var text = window.location.pathname;
+if (text.length <2) {
+  randoms='foo'
 } else {
+  var randoms=''
 }
-
+var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+for( var i=0; i < 1; i++ )randoms += possible.charAt(Math.floor(Math.random() * possible.length));
+return text+randoms;
+} 
+getlink=makeid();
+//limit depth
+if (getlink.length-5 < $domain_depth) {
+  var link = document.createElement('a');
+  link.setAttribute('href', getlink);
+  link.innerHTML = 'Hello World!';
+  document.body.appendChild(link);
+  //unlimited depth (if depth ==0)
+} else if ($domain_depth == 0) {
+  var link = document.createElement('a');
+  link.setAttribute('href', getlink);
+  link.innerHTML = 'Hello World!';
+  document.body.appendChild(link);
+}
 </script>
 </body>
 </html>

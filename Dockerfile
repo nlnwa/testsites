@@ -1,5 +1,5 @@
 FROM centos:7
-MAINTAINER The CentOS Project <cloud-ops@centos.org>
+MAINTAINER Norsk Nettarkiv
 
 RUN yum -y --setopt=tsflags=nodocs update && \
     yum -y --setopt=tsflags=nodocs install httpd dnsmasq && \
@@ -18,8 +18,8 @@ ADD create_sites.sh /var/www/html/test/
 ADD run-httpd.sh /run-httpd.sh
 RUN chmod -v +x /run-httpd.sh && \
     chmod +x /var/www/html/test/create_sites.sh
-ENV NUMBER_OF_SITES='2500'
-ENV DOMAIN_DEPTH='5'
+ENV NUMBER_OF_SITES='2500' \
+    DOMAIN_DEPTH='5'
 
 RUN ["/var/www/html/test/create_sites.sh"]
 CMD ["/run-httpd.sh"]
