@@ -23,3 +23,4 @@ ENV NUMBER_OF_SITES='2500' \
 
 RUN ["/var/www/html/test/create_sites.sh"]
 CMD ["/run-httpd.sh"]
+
