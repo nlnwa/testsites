@@ -5,10 +5,7 @@
 # if it thinks it is already running.
 rm -rf /run/httpd/* /tmp/httpd*
 
-
-echo "address=/dev/$(hostname -I)
-user=root
-" >> /etc/dnsmasq.conf
+cat /etc/dnsmasq.conf | sed "s/mylocalip/$(hostname -I)/g" > /etc/dnsmasq.confs
+mv /etc/dnsmasq.confs /etc/dnsmasq.conf
 /usr/sbin/dnsmasq
 exec /usr/sbin/apachectl -DFOREGROUND
-
