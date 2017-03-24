@@ -3,7 +3,7 @@ sites=$NUMBER_OF_SITES
 domain_depth=$DOMAIN_DEPTH
 i=1
 while [[ $i -le $sites ]]; do
-  mkdir /var/www/html/test/$i.dev
+  mkdir /var/www/html/test/a$i.dev
 #creating index.html
   echo "
 <!DOCTYPE html>
@@ -44,7 +44,7 @@ while [[ $i -le $sites ]]; do
       </script>
     </body>
   </html>
-  " >> /var/www/html/test/$i.dev/index.html
+  " >> /var/www/html/test/a$i.dev/index.html
   echo -ne "Generating websides: "$i" of $sites \r"
   i=$[$i+1]
 done
@@ -53,7 +53,7 @@ echo ""
 #0.dev
 echo "Generating 0.dev/index.html"
 i=1
-mkdir /var/www/html/test/0.dev
+mkdir /var/www/html/test/a0.dev
 echo "
 <!DOCTYPE html>
   <html lang='en'>
@@ -61,14 +61,14 @@ echo "
       <meta charset="UTF-8">
     </head>
     <body>
-  " >> /var/www/html/test/0.dev/index.html
+  " >> /var/www/html/test/a0.dev/index.html
 
 
 while [[ $i -le $sites ]];do
-  echo "<a href="http://$i.dev">$i.dev</a>" >> /var/www/html/test/0.dev/index.html
+  echo "<a href="http://a$i.dev">a$i.dev</a>" >> /var/www/html/test/a0.dev/index.html
   i=$[$i+1]
 done
 
 echo "
     </body>
-  </html>"  >> /var/www/html/test/0.dev/index.html
+  </html>"  >> /var/www/html/test/a0.dev/index.html
