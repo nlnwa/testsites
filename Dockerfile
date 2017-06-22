@@ -2,7 +2,7 @@ FROM centos:7
 MAINTAINER Norsk Nettarkiv
 
 RUN yum -y --setopt=tsflags=nodocs update && \
-    yum -y --setopt=tsflags=nodocs install httpd dnsmasq && \
+    yum -y --setopt=tsflags=nodocs install httpd dnsmasq bind-utils && \
     yum clean all
 
 EXPOSE 80

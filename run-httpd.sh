@@ -8,9 +8,13 @@ rm -rf /run/httpd/* /tmp/httpd*
 if [ -z "${HOST}" ]; then
     IP=$(hostname -I)
 else
-    P=$(ping -c1 -w10 -n ${HOST})
+    P=$(host ${HOST})
     if [ $? -eq 0 ]; then
-	IP=$(echo ${P} | sed "s/[^(]*(\([^)]*\).*/\1/")
+	if [[ ${P} =~ "has address" ]]; then
+	    IP=$(echo ${P} | sed "s/.*has address \([0-9.]*\).*/\1/")
+	else
+	    IP=${HOST}
+	fi
     else
 	echo "Could not resolve host '${HOST}'"
 	exit 1
