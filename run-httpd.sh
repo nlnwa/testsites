@@ -5,7 +5,21 @@
 # if it thinks it is already running.
 rm -rf /run/httpd/* /tmp/httpd*
 
-cat /etc/dnsmasq.conf | sed "s/mylocalip/$(hostname -I)/g" > /etc/dnsmasq.confs
-mv /etc/dnsmasq.confs /etc/dnsmasq.conf
+if [ -z "${HOST}" ]; then
+    IP=$(hostname -I)
+else
+    P=$(ping -c1 -w10 -n ${HOST})
+    if [ $? -eq 0 ]; then
+	IP=$(echo ${P} | sed "s/[^(]*(\([^)]*\).*/\1/")
+    else
+	echo "Could not resolve host '${HOST}'"
+	exit 1
+    fi
+fi
+
+sed -i "s/mylocalip/${IP}/g" /etc/dnsmasq.conf
+
+echo "DNS of testsites resolves all requests to '${IP}'"
+
 /usr/sbin/dnsmasq
 exec /usr/sbin/apachectl -DFOREGROUND
