@@ -12,6 +12,7 @@ RUN mkdir -p /var/www/html/test/
 
 ADD dnsmasq.conf /etc/
 ADD httpd.conf /etc/httpd/conf/
+ADD apache-icon.gif /var/www/html/test/static.com/
 ADD create_sites.sh /var/www/html/test/
 
 # Simple startup script to avoid some issues observed with container restart
