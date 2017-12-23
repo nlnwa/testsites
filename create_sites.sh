@@ -18,6 +18,7 @@ while [[ $i -le $sites ]]; do
     <img src='http://redirect.com/apache-icon.gif'/>
     <img src='http://static.com/apache-icon.gif'/>
     <img src='http://static.com/not-found.gif'/>
+    <img src='http://static.com/bigpic.png'/>
       <script>
 //Function for creating 'random' pages.
         function makeid() {
