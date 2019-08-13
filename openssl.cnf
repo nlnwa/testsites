@@ -1,0 +1,23 @@
+[req]
+distinguished_name = req_distinguished_name
+req_extensions = v3_req
+[req_distinguished_name]
+countryName = NO
+countryName_default = NO
+stateOrProvinceName = Nordnorge
+stateOrProvinceName_default = Nordnorge
+localityName = Mo i Rana
+localityName_default = Mo i Rana
+organizationName = National Library of Norway
+organizationalUnitName = Nettarkivet
+organizationalUnitName_default = Nettarkivet
+commonName = *
+commonName_max = 64
+[ v3_req ]
+# Extensions to add to a certificate request
+basicConstraints = CA:FALSE
+keyUsage = nonRepudiation, digitalSignature, keyEncipherment
+subjectAltName = @alt_names
+[alt_names]
+DNS.1 = *.a1.com
+DNS.2 = *.a2.com
