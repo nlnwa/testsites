@@ -17,7 +17,3 @@ commonName_max = 64
 # Extensions to add to a certificate request
 basicConstraints = CA:FALSE
 keyUsage = nonRepudiation, digitalSignature, keyEncipherment
-subjectAltName = @alt_names
-[alt_names]
-DNS.1 = *.a1.com
-DNS.2 = *.a2.com
