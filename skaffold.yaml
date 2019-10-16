@@ -1,0 +1,12 @@
+apiVersion: skaffold/v1beta16
+kind: Config
+build:
+  artifacts:
+          - image: norsknettarkiv/testsites 
+  # local is default
+  #local: {}
+
+deploy:
+  kubectl:
+    manifests:
+      - values.yaml

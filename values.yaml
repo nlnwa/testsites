@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: local-testsites
+spec:
+  containers:
+  - name: local-testsites
+    image: norsknettarkiv/testsites
+    imagePullPolicy: IfNotPresent 
